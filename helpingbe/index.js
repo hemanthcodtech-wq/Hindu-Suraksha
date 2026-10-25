@@ -10,12 +10,20 @@ const port = process.env.PORT || 3000;
 // Neon recommends using neon() for serverless environments (HTTP queries)
 const sql = neon(process.env.DATABASE_URL);
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://hindu-suraksha.vercel.app",
+    /\.vercel\.app$/
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Basic health check route
 app.get('/', (req, res) => {
-  res.json({ message: 'HelpingBe Backend is running!' });
+  res.json({ message: 'Hindu Suraksha Backend is running!' });
 });
 
 // Example route to check DB connection
