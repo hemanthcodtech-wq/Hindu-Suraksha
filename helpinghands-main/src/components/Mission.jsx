@@ -1,0 +1,69 @@
+import { ArrowRight } from "lucide-react"
+import { NavLink } from "react-router-dom"
+import { mission } from "../data/content"
+import Logo from "./Common/Logo"
+import FadeIn from "./Common/FadeIn"
+
+export default function Mission() {
+  return (
+    <section id="mission" className="w-full px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+      <div className="mx-auto w-full max-w-[1320px]">
+        <FadeIn className="relative overflow-hidden rounded-3xl border border-[#fed7aa]/70 bg-gradient-to-br from-[#fffdfa] via-white to-[#fff8f0] p-6 shadow-[0_12px_40px_rgba(230,81,0,0.06)] sm:p-10 lg:p-12">
+          <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
+            
+            {/* Left Content Column */}
+            <div className="lg:col-span-7">
+              <span className="inline-flex items-center gap-2 rounded-full bg-[#fff3e0] px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#e65100]">
+                <span className="size-2 rounded-full bg-[#e65100]" />
+                {mission.eyebrow}
+              </span>
+              
+              <h2 className="mt-3.5 font-heading text-2xl font-extrabold leading-[1.12] text-[#0d2040] sm:text-4xl lg:text-[42px]">
+                {mission.title}
+              </h2>
+              
+              <p className="mt-4 text-sm leading-relaxed text-[#475467] sm:text-base sm:leading-8">
+                {mission.body}
+              </p>
+
+              <div className="mt-6 flex flex-wrap items-center gap-3.5 sm:mt-8">
+                <NavLink
+                  to="/about"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-gradient-to-r from-[#e65100] to-[#ff9800] px-6 py-2.5 text-xs font-bold text-white shadow-lg shadow-[#e65100]/20 transition hover:brightness-105 active:scale-95 sm:text-sm"
+                >
+                  Read More
+                  <ArrowRight className="size-4" />
+                </NavLink>
+                <NavLink
+                  to="/programs"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[#fed7aa] bg-white px-5 py-2.5 text-xs font-bold text-[#e65100] transition hover:bg-[#fff3e0] sm:text-sm"
+                >
+                  View Seva Projects
+                </NavLink>
+              </div>
+            </div>
+
+            {/* Right Image Column */}
+            <div className="lg:col-span-5">
+              <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border-2 border-white/80 shadow-xl ring-1 ring-[#fed7aa]/50 sm:rounded-3xl">
+                <img
+                  src="/images/mission-seva.png"
+                  alt="Hindu Suraksha Seva & Community Support"
+                  className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-105"
+                  decoding="async"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d2040]/70 via-transparent to-transparent opacity-80" />
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <p className="text-xs font-extrabold tracking-wide uppercase text-[#ffcc80]">Grassroots Social Impact</p>
+                  <p className="text-[11px] text-white/90">Uplifting communities with dignity &amp; care</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  )
+}

@@ -1,0 +1,421 @@
+import { useState, useRef } from "react"
+import { Award, FileText, Download, Edit3, Image as ImageIcon } from "lucide-react"
+import FadeIn from "../../components/Common/FadeIn"
+import { jsPDF } from "jspdf"
+import html2canvas from "html2canvas"
+import { useApp } from "../../context/AppContext"
+import ReactQuill from "react-quill-new"
+import "react-quill-new/dist/quill.snow.css"
+
+const CERTIFICATE_TYPES = [
+  { 
+    id: "membership", 
+    label: "Membership Certificate", 
+    title: "Certificate of Membership",
+    defaultRole: "Registered Member",
+    defaultDesc: "For officially joining the Hindu Suraksha and committing to our mission of empowering communities and changing lives."
+  },
+  { 
+    id: "appreciation", 
+    label: "Appreciation Certificate", 
+    title: "Certificate of Appreciation",
+    defaultRole: "Outstanding Contributor",
+    defaultDesc: "In recognition of your exceptional generosity, outstanding contribution, and selfless service to the community."
+  },
+  { 
+    id: "participation", 
+    label: "Participation Certificate", 
+    title: "Certificate of Participation",
+    defaultRole: "Event Participant",
+    defaultDesc: "For active and enthusiastic participation in our community outreach programs and demonstrating a true spirit of volunteerism."
+  },
+  { 
+    id: "visitor", 
+    label: "Visitor Certificate", 
+    title: "Certificate of Visit",
+    defaultRole: "Honored Guest",
+    defaultDesc: "In acknowledgment of your valuable visit to the Hindu Suraksha headquarters and your keen interest in our social initiatives."
+  },
+  { 
+    id: "appointment", 
+    label: "Appointment Letter", 
+    title: "Letter of Appointment",
+    defaultRole: "Executive Coordinator",
+    defaultDesc: "Executive Coordinator" // Used as the Position Title in the letter
+  },
+]
+
+export default function AdminCertificates() {
+  const defaultLetterContent = `<p>We are pleased to offer you the position of [Position Title] at [Site Title]. Your dedication to our mission and outstanding qualifications have made you an ideal candidate for this role.</p><p><br></p><p>In this position, you will play a crucial role in advancing our initiatives to support and empower the communities we serve. Your responsibilities will include, but are not limited to, the duties discussed during your selection process.</p><p><br></p><p>We believe that your skills and passion will be a valuable addition to our team. Please review the attached terms and conditions of your appointment.</p><p><br></p><p>We look forward to welcoming you to the [Site Title] family and achieving great things together.</p>`
+
+  const [type, setType] = useState(CERTIFICATE_TYPES[0].id)
+  const [form, setForm] = useState({
+    recipientName: "John Doe",
+    description: CERTIFICATE_TYPES[0].defaultDesc,
+    letterContent: defaultLetterContent,
+    date: new Date().toISOString().split("T")[0],
+    roleOrEvent: CERTIFICATE_TYPES[0].defaultRole,
+  })
+  const [generating, setGenerating] = useState(false)
+  const certificateRef = useRef(null)
+  const { globalSettings } = useApp()
+  
+  const s = globalSettings || {}
+  const activeLogo = s.headerLogoUrl || "/images/hindu-suraksha-logo.png?notaint=1"
+  const siteTitle = s.siteTitle || "Hindu Suraksha"
+
+  const selectedType = CERTIFICATE_TYPES.find((t) => t.id === type)
+
+  const handleTypeChange = (newType) => {
+    setType(newType)
+    const newTypeData = CERTIFICATE_TYPES.find(t => t.id === newType)
+    setForm(prev => ({
+      ...prev,
+      description: newTypeData.defaultDesc,
+      letterContent: defaultLetterContent,
+      roleOrEvent: newTypeData.defaultRole
+    }))
+  }
+
+  const handleGeneratePDF = async () => {
+    if (!certificateRef.current) return
+    setGenerating(true)
+
+    // Save scroll position and scroll to top to prevent html2canvas cutoff bug
+    const originalScrollY = window.scrollY;
+    window.scrollTo(0, 0);
+
+    try {
+      const isPortrait = type === "appointment"
+      const targetWidth = isPortrait ? 794 : 1123
+      const targetHeight = isPortrait ? 1123 : 794
+
+      const canvas = await html2canvas(certificateRef.current, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        width: targetWidth,
+        height: targetHeight,
+        windowWidth: targetWidth,
+        windowHeight: targetHeight,
+        onclone: (clonedDoc) => {
+          const el = clonedDoc.getElementById("certificate-download-target")
+          if (el) {
+            let parent = el.parentElement
+            while (parent && parent !== clonedDoc.body) {
+              parent.style.overflow = "visible"
+              parent.style.transform = "none"
+              parent = parent.parentElement
+            }
+          }
+        }
+      })
+      
+      // Restore original scroll position immediately
+      window.scrollTo(0, originalScrollY);
+      const imgData = canvas.toDataURL("image/jpeg", 1.0)
+      
+      // A4 Landscape is ~ 297mm x 210mm
+      const pdf = new jsPDF({
+        orientation: isPortrait ? "portrait" : "landscape",
+        unit: "mm",
+        format: "a4",
+      })
+
+      const pdfWidth = pdf.internal.pageSize.getWidth()
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width
+
+      pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight)
+      pdf.save(`${selectedType.label.replace(/\s+/g, "_")}_${form.recipientName.replace(/\s+/g, "_")}.pdf`)
+    } catch (error) {
+      console.error("Error generating PDF:", error)
+      alert("Failed to generate PDF. Check console for details.")
+    } finally {
+      setGenerating(false)
+    }
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
+
+  return (
+    <div className="space-y-5 sm:space-y-6">
+      <div>
+        <h2 className="text-[15px] font-extrabold text-primary sm:text-xl">Generate Certificates & Letters</h2>
+        <p className="mt-1 text-[9px] text-muted-foreground sm:text-sm">
+          Manually fill details to generate high-quality PDF certificates and appointment letters.
+        </p>
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-[400px_1fr]">
+        <FadeIn className="rounded-3xl border border-border bg-card p-5 sm:p-6 shadow-sm h-fit">
+          <div className="mb-5 border-b border-border pb-4">
+            <h3 className="text-sm font-bold text-primary flex items-center gap-2">
+              <Edit3 className="size-4 text-teal" /> Document Details
+            </h3>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <label className="mb-1.5 block text-xs font-bold text-primary">Document Type</label>
+              <div className="grid grid-cols-1 gap-2">
+                {CERTIFICATE_TYPES.map((t) => (
+                  <button
+                    key={t.id}
+                    onClick={() => handleTypeChange(t.id)}
+                    className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-xs font-bold text-left transition ${
+                      type === t.id
+                        ? "border-teal bg-primary-soft text-teal"
+                        : "border-border bg-background text-primary hover:border-teal/50"
+                    }`}
+                  >
+                    {t.id === "appointment" ? <FileText className="size-4 shrink-0" /> : <Award className="size-4 shrink-0" />}
+                    {t.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className="mb-1.5 block text-xs font-bold text-primary">Recipient Name</label>
+              <input
+                type="text"
+                name="recipientName"
+                value={form.recipientName}
+                onChange={handleInputChange}
+                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm focus:border-teal focus:outline-none"
+              />
+            </div>
+
+            {type !== "appointment" && (
+              <div>
+                <label className="mb-1.5 block text-xs font-bold text-primary">Event / Role</label>
+                <input
+                  type="text"
+                  name="roleOrEvent"
+                  value={form.roleOrEvent}
+                  onChange={handleInputChange}
+                  placeholder="e.g. Annual Blood Donation Camp"
+                  className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm focus:border-teal focus:outline-none"
+                />
+              </div>
+            )}
+
+            <div>
+              <label className="mb-1.5 block text-xs font-bold text-primary">
+                {type === "appointment" ? "Position Title" : "Description / Reason"}
+              </label>
+              <textarea
+                name="description"
+                value={form.description}
+                onChange={handleInputChange}
+                rows={2}
+                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm focus:border-teal focus:outline-none"
+              />
+            </div>
+
+            {type === "appointment" && (
+              <div>
+                <label className="mb-1.5 block text-xs font-bold text-primary">Letter Body Content</label>
+                <div className="bg-background rounded-xl overflow-hidden border border-border focus-within:border-teal">
+                  <ReactQuill 
+                    theme="snow" 
+                    value={form.letterContent} 
+                    onChange={(val) => setForm((prev) => ({ ...prev, letterContent: val }))}
+                    className="h-48 pb-10"
+                  />
+                </div>
+                <p className="mt-1 text-[10px] text-muted-foreground">
+                  Use <b>[Position Title]</b> and <b>[Site Title]</b> to dynamically insert those values.
+                </p>
+              </div>
+            )}
+
+            <div>
+              <label className="mb-1.5 block text-xs font-bold text-primary">Date</label>
+              <input
+                type="date"
+                name="date"
+                value={form.date}
+                onChange={handleInputChange}
+                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm focus:border-teal focus:outline-none"
+              />
+            </div>
+
+            <button
+              onClick={handleGeneratePDF}
+              disabled={generating || !form.recipientName}
+              className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-teal px-4 py-3 text-sm font-bold text-white transition hover:bg-[#065f69] disabled:opacity-50"
+            >
+              {generating ? (
+                "Generating PDF..."
+              ) : (
+                <>
+                  <Download className="size-4" /> Download PDF
+                </>
+              )}
+            </button>
+          </div>
+        </FadeIn>
+
+        <FadeIn className="rounded-3xl border border-border bg-card p-5 sm:p-6 shadow-sm overflow-x-auto flex flex-col items-center bg-gray-50/50">
+          <div className="mb-4 flex w-full justify-between items-center max-w-[800px]">
+             <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Live Preview</span>
+          </div>
+
+          {/* Certificate / Letter Preview Area */}
+          <div className="shadow-2xl bg-white relative">
+            {type !== "appointment" ? (
+              // Certificate Template (Landscape)
+              <div
+                id="certificate-download-target"
+                ref={certificateRef}
+                className="relative flex flex-col items-center justify-center overflow-hidden"
+                style={{ width: "1123px", height: "794px", padding: "60px", backgroundColor: "#fdfcf0", backgroundImage: "radial-gradient(#e5e7eb 1px, transparent 1px)", backgroundSize: "30px 30px", fontFamily: "'Poppins', sans-serif" }} // A4 Landscape at 96 DPI
+              >
+                {/* Decorative Borders */}
+                <div className="absolute inset-[24px] border-[16px] border-[#0A2540] shadow-inner"></div>
+                <div className="absolute inset-[44px] border-[4px] border-[#D4AF37]"></div>
+                
+                {/* Background Pattern/Logo Watermark */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none z-0">
+                  <div className="w-[500px] h-[500px] rounded-full border-[60px] border-[#D4AF37]"></div>
+                </div>
+
+                {/* Reference Number */}
+                <div className="absolute z-20" style={{ top: "60px", right: "60px", textAlign: "right" }}>
+                  <p style={{ fontSize: "10px", fontWeight: "bold", color: "#6b7280", letterSpacing: "1px" }}>CERTIFICATE NO.</p>
+                  <p style={{ fontSize: "14px", fontWeight: "bold", color: "#1f2937" }}>HHF-{form.date ? form.date.substring(0,4) : new Date().getFullYear()}-0001</p>
+                </div>
+
+                {/* Centered Content */}
+                <div className="relative z-10 flex flex-col items-center text-center w-full max-w-[800px]">
+
+                  {/* Header */}
+                  <div className="flex items-center justify-center mb-4">
+                    <img src={activeLogo} crossOrigin="anonymous" alt="Logo" className="h-20 object-contain" />
+                  </div>
+
+                  <h2 className="text-5xl italic mb-4" style={{ color: "#1f2937", fontFamily: "'Playfair Display', serif", fontWeight: 700 }}>{selectedType.title}</h2>
+                  
+                  <p className="text-lg mb-2 font-medium uppercase tracking-widest" style={{ color: "#4b5563" }}>This is proudly presented to</p>
+                  
+                  <div className="mb-4" style={{ textAlign: "center" }}>
+                    <h3 className="text-6xl font-extrabold pb-2 px-10 inline-block" style={{ color: "#0A2540", textShadow: "1px 1px 2px rgba(0,0,0,0.1)" }}>
+                      {form.recipientName || "[Recipient Name]"}
+                    </h3>
+                    <div style={{ display: "inline-block", width: "100%", maxWidth: "500px", height: "2px", backgroundColor: "#d1d5db" }}></div>
+                  </div>
+
+                  <p className="text-xl leading-relaxed mb-3 max-w-[700px]" style={{ color: "#374151" }}>
+                    {form.description}
+                  </p>
+
+                  <p className="text-[14px] italic mb-3 max-w-[600px]" style={{ color: "#4b5563", fontFamily: "'Playfair Display', serif" }}>
+                    In witness whereof, we have hereunto set our hands and the official seal of the {siteTitle} on this day.
+                  </p>
+
+                  <p className="text-xl font-bold mb-0 uppercase tracking-widest" style={{ color: "#D4AF37" }}>
+                    {form.roleOrEvent}
+                  </p>
+                </div>
+
+                {/* Signatures & Date - Positioned absolutely to canvas */}
+                <div className="absolute z-20 left-0 right-0 flex justify-between w-full px-[80px]" style={{ bottom: "56px" }}>
+                  <div style={{ width: "192px", margin: "0 auto" }}>
+                    <div className="text-lg font-bold pb-1 w-full" style={{ color: "#1f2937", textAlign: "center" }}>
+                      {form.date ? new Date(form.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : "[Date]"}
+                    </div>
+                    <div style={{ display: "inline-block", width: "100%", height: "1px", backgroundColor: "#1f2937", marginBottom: "5px" }}></div>
+                    <div style={{ textAlign: "center" }}>
+                      <span className="text-sm uppercase tracking-wider font-bold" style={{ color: "#6b7280" }}>Date</span>
+                    </div>
+                  </div>
+
+                  {/* Official Seal */}
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end" }}>
+                    <div style={{ width: "72px", height: "72px", borderRadius: "50%", border: "4px solid #D4AF37", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#fffcf2", boxShadow: "0 4px 6px rgba(0,0,0,0.05)" }}>
+                      <Award size={36} color="#D4AF37" strokeWidth={1.5} />
+                    </div>
+                    <span style={{ fontSize: "10px", fontWeight: "bold", color: "#D4AF37", marginTop: "8px", letterSpacing: "2px" }}>OFFICIAL SEAL</span>
+                  </div>
+                  
+                  <div style={{ width: "192px", margin: "0 auto" }}>
+                    <div style={{ height: "40px", paddingTop: "8px", paddingBottom: "4px", width: "full", textAlign: "center" }}>
+                      <span className="text-4xl" style={{ color: "#1f2937", fontFamily: "'Dancing Script', cursive", fontWeight: 700 }}>{s.authorizedSignatoryName ? s.authorizedSignatoryName.charAt(0) + "..." : "H.H.F."}</span>
+                    </div>
+                    <div style={{ display: "inline-block", width: "100%", height: "1px", backgroundColor: "#1f2937", marginBottom: "8px" }}></div>
+                    <div style={{ textAlign: "center" }}>
+                      <span className="text-sm uppercase tracking-wider font-bold" style={{ color: "#6b7280" }}>{s.authorizedSignatoryTitle || "Authorized Signatory"}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              // Appointment Letter Template (Portrait)
+              <div
+                id="certificate-download-target"
+                ref={certificateRef}
+                className="relative text-left"
+                style={{ width: "794px", height: "1123px", padding: "80px", backgroundColor: "#ffffff", color: "#1f2937", fontFamily: "'Poppins', sans-serif" }} // A4 Portrait at 96 DPI
+              >
+                <div className="flex items-center justify-between border-b-4 border-[#087884] pb-6 mb-10">
+                  <div className="flex items-center gap-4">
+                    <img src={activeLogo} crossOrigin="anonymous" alt="Logo" className="w-16 h-16 object-contain" />
+                    <div>
+                      <h1 className="text-2xl font-extrabold text-[#087884] uppercase tracking-widest">{siteTitle}</h1>
+                      <p className="text-[10px] font-bold" style={{ color: "#6b7280" }}>Head office: Hyderabad, Telangana, India</p>
+                      <p className="text-[10px] font-bold" style={{ color: "#6b7280" }}>Working present: Hyderabad, Telangana, India</p>
+                      <p className="text-[10px] font-bold" style={{ color: "#6b7280" }}>{s.contactEmail || "contact@hindusuraksha.org"} | +91 79899 38718 | WhatsApp: +91 79899 38718</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Letter Content */}
+                <div className="text-[15px] leading-relaxed">
+                  <p className="mb-8 font-bold" style={{ color: "#4b5563" }}>
+                    Date: {form.date ? new Date(form.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : "[Date]"}
+                  </p>
+
+                  <p className="mb-4">To,</p>
+                  <h3 className="text-xl font-bold mb-8" style={{ color: "#111827" }}>{form.recipientName || "[Recipient Name]"}</h3>
+
+                  <h4 className="text-lg font-bold text-[#087884] mb-6 border-b pb-2" style={{ borderColor: "#e5e7eb" }}>
+                    Subject: Letter of Appointment - {form.description || "[Position Title]"}
+                  </h4>
+
+                  <p className="mb-6">Dear {form.recipientName || "[Name]"},</p>
+
+                  <div 
+                    className="mb-6 quill-content-preview"
+                    dangerouslySetInnerHTML={{ 
+                      __html: form.letterContent
+                        .replace(/\[Position Title\]/g, `<strong>${form.description || "[Position Title]"}</strong>`)
+                        .replace(/\[Site Title\]/g, siteTitle)
+                    }} 
+                  />
+
+                  <p className="mb-10">Sincerely,</p>
+
+                  <div style={{ width: "192px" }}>
+                    <div style={{ height: "64px", paddingTop: "20px", paddingBottom: "4px" }}>
+                       <span className="text-4xl ml-4" style={{ color: "#1f2937", fontFamily: "'Dancing Script', cursive", fontWeight: 700 }}>{s.authorizedSignatoryName ? s.authorizedSignatoryName.split(' ')[0] : "Director"}</span>
+                    </div>
+                    <div style={{ width: "100%", height: "1px", backgroundColor: "#9ca3af", marginBottom: "8px" }}></div>
+                    <p className="font-bold" style={{ color: "#111827" }}>{s.authorizedSignatoryName || "Executive Director"}</p>
+                    <p className="text-sm" style={{ color: "#6b7280" }}>{siteTitle}</p>
+                  </div>
+                </div>
+                
+                {/* Footer */}
+                <div className="absolute bottom-0 left-0 right-0 h-4 bg-[#087884]"></div>
+              </div>
+            )}
+          </div>
+        </FadeIn>
+      </div>
+    </div>
+  )
+}
