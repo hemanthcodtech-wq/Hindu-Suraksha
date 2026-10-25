@@ -87,14 +87,61 @@ export default function AdminDonors() {
         ))}
       </div>
 
-      {/* Table */}
+      {/* Donors List: Responsive Mobile Cards (< md) + Desktop Scrollable Table (>= md) */}
       <FadeIn className="overflow-hidden rounded-2xl border border-border bg-card sm:rounded-3xl">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
+        {/* Mobile View: Cards */}
+        <div className="divide-y divide-border md:hidden">
+          {loading ? (
+            <p className="p-5 text-center text-xs text-muted-foreground">Loading donors...</p>
+          ) : filtered.length === 0 ? (
+            <p className="p-5 text-center text-xs text-muted-foreground">No donors found.</p>
+          ) : filtered.map((d) => (
+            <div
+              key={d.id}
+              onClick={() => setSelectedDonor(d)}
+              className="cursor-pointer p-4 transition hover:bg-muted/30 active:bg-muted/50 space-y-2.5"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex items-center gap-2.5">
+                  <span className="grid size-9 shrink-0 place-items-center rounded-full bg-primary-soft text-xs font-bold text-teal">
+                    {d.name?.charAt(0) || "D"}
+                  </span>
+                  <div>
+                    <p className="text-xs font-bold text-primary">{d.name}</p>
+                    <p className="text-[10px] text-muted-foreground">{d.email}</p>
+                  </div>
+                </div>
+                <span className="font-heading text-sm font-black text-[#e65100]">
+                  ₹{parseInt(d.amount || 0, 10).toLocaleString()}
+                </span>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-between gap-1 border-t border-border/60 pt-2 text-[10px]">
+                <span className="font-medium text-muted-foreground truncate max-w-[200px]">
+                  {d.campaign_name || d.campaign || d.designation || "General Seva"}
+                </span>
+                <span className={`rounded-full px-2 py-0.5 text-[8px] font-bold ${
+                  d.status === "success" ? "bg-teal/10 text-teal" : "bg-red-50 text-red-500"
+                }`}>
+                  {d.status}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between text-[9px] text-muted-foreground/80 font-mono">
+                <span>{d.txn_id}</span>
+                <span>{new Date(d.date).toLocaleDateString()}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop View: Table with horizontal scroll safety */}
+        <div className="hidden overflow-x-auto md:block">
+          <table className="w-full min-w-[720px] text-left">
             <thead>
               <tr className="border-b border-border bg-muted/40">
                 {["Donor", "Campaign", "Amount", "Txn ID", "Date", "Status"].map((h) => (
-                  <th key={h} className="px-3 py-2.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground sm:px-5 sm:py-3 sm:text-xs">
+                  <th key={h} className="whitespace-nowrap px-4 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">
                     {h}
                   </th>
                 ))}
@@ -111,25 +158,27 @@ export default function AdminDonors() {
                   onClick={() => setSelectedDonor(d)}
                   className={`border-b border-border last:border-0 cursor-pointer hover:bg-muted/50 transition ${i % 2 === 0 ? "" : "bg-muted/20"}`}
                 >
-                  <td className="px-3 py-2.5 sm:px-5 sm:py-3">
-                    <div className="flex items-center gap-2">
-                      <span className="grid size-6 shrink-0 place-items-center rounded-full bg-primary-soft text-[8px] font-bold text-teal sm:size-8 sm:text-xs">
+                  <td className="whitespace-nowrap px-4 py-3">
+                    <div className="flex items-center gap-2.5">
+                      <span className="grid size-8 shrink-0 place-items-center rounded-full bg-primary-soft text-xs font-bold text-teal">
                         {d.name.charAt(0)}
                       </span>
                       <div>
-                        <p className="text-[9px] font-semibold text-primary sm:text-sm">{d.name}</p>
-                        <p className="text-[7px] text-muted-foreground sm:text-xs">{d.email}</p>
+                        <p className="text-sm font-semibold text-primary">{d.name}</p>
+                        <p className="text-xs text-muted-foreground">{d.email}</p>
                       </div>
                     </div>
                   </td>
-                  <td className="px-3 py-2.5 text-[9px] text-muted-foreground sm:px-5 sm:py-3 sm:text-sm">{d.campaign_name || d.campaign || d.designation || "General"}</td>
-                  <td className="px-3 py-2.5 sm:px-5 sm:py-3">
-                    <span className="font-heading text-[10px] font-extrabold text-primary sm:text-sm">₹{parseInt(d.amount || 0, 10).toLocaleString()}</span>
+                  <td className="px-4 py-3 text-sm text-muted-foreground max-w-[220px]">
+                    <span className="line-clamp-2">{d.campaign_name || d.campaign || d.designation || "General"}</span>
                   </td>
-                  <td className="px-3 py-2.5 text-[8px] font-mono text-muted-foreground sm:px-5 sm:py-3 sm:text-xs">{d.txn_id}</td>
-                  <td className="px-3 py-2.5 text-[9px] text-muted-foreground sm:px-5 sm:py-3 sm:text-sm">{new Date(d.date).toLocaleDateString()}</td>
-                  <td className="px-3 py-2.5 sm:px-5 sm:py-3">
-                    <span className={`rounded-full px-2 py-0.5 text-[7px] font-bold sm:text-[10px] ${
+                  <td className="whitespace-nowrap px-4 py-3">
+                    <span className="font-heading text-sm font-extrabold text-primary">₹{parseInt(d.amount || 0, 10).toLocaleString()}</span>
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3 font-mono text-xs text-muted-foreground">{d.txn_id}</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-muted-foreground">{new Date(d.date).toLocaleDateString()}</td>
+                  <td className="whitespace-nowrap px-4 py-3">
+                    <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${
                       d.status === "success" ? "bg-teal/10 text-teal" : "bg-red-50 text-red-500"
                     }`}>
                       {d.status}

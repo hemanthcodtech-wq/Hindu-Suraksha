@@ -172,13 +172,63 @@ export default function AdminCampaigns() {
         {/* List Panel */}
         <FadeIn className="lg:col-span-2">
           <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm sm:rounded-3xl">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left">
+            {/* Mobile View: Clean Campaign Cards */}
+            <div className="divide-y divide-border md:hidden">
+              {loading ? (
+                <p className="p-6 text-center text-xs text-muted-foreground">Loading campaigns...</p>
+              ) : campaigns.length === 0 ? (
+                <p className="p-6 text-center text-xs text-muted-foreground">No campaigns found.</p>
+              ) : campaigns.map((c) => (
+                <div key={c.id} className="p-4 space-y-3">
+                  <div className="flex items-start gap-3">
+                    {c.image ? (
+                      <img src={c.image} alt="" className="size-14 rounded-xl object-cover shrink-0" />
+                    ) : (
+                      <div className="grid size-14 place-items-center rounded-xl bg-teal/10 text-teal text-[10px] shrink-0 font-bold">No Img</div>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-bold text-primary truncate">{c.name}</p>
+                      <p className="mt-0.5 text-[10px] text-muted-foreground line-clamp-2 leading-relaxed">{c.text}</p>
+                    </div>
+                  </div>
+
+                  {/* Progress Bar */}
+                  <div className="rounded-xl bg-muted/40 p-2.5">
+                    <div className="flex justify-between text-[10px] font-bold">
+                      <span className="text-teal">{c.raised}% raised</span>
+                      <span className="text-muted-foreground">Goal: {c.goal}</span>
+                    </div>
+                    <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-primary-soft">
+                      <div className="h-full rounded-full bg-gradient-to-r from-[#04458F] to-[#5E922C]" style={{ width: `${c.raised}%` }} />
+                    </div>
+                  </div>
+
+                  {/* Actions Bar */}
+                  <div className="flex items-center justify-between gap-2 pt-1">
+                    <Link to={`/admin/campaigns/${c.id}`} className="inline-flex h-8 items-center justify-center rounded-xl bg-indigo-50 px-3 text-[11px] font-bold text-indigo-600 transition hover:bg-indigo-500 hover:text-white">
+                      View Revenue
+                    </Link>
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => handleEdit(c)} className="grid size-8 place-items-center rounded-xl border border-border bg-background text-muted-foreground transition hover:bg-teal hover:text-white">
+                        <Pencil className="size-3.5" />
+                      </button>
+                      <button onClick={() => handleDelete(c.id)} className="grid size-8 place-items-center rounded-xl border border-red-200 bg-red-50 text-red-500 transition hover:bg-red-500 hover:text-white">
+                        <Trash2 className="size-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop View: Table */}
+            <div className="hidden overflow-x-auto md:block">
+              <table className="w-full min-w-[620px] text-left">
                 <thead>
                   <tr className="border-b border-border bg-muted/40">
-                    <th className="px-4 py-3 text-[9px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">Campaign</th>
-                    <th className="px-4 py-3 text-[9px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">Progress</th>
-                    <th className="px-4 py-3 text-[9px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">Actions</th>
+                    <th className="px-4 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Campaign</th>
+                    <th className="px-4 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Progress</th>
+                    <th className="px-4 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
@@ -191,19 +241,19 @@ export default function AdminCampaigns() {
                       <td className="px-4 py-4">
                         <div className="flex items-center gap-3">
                           {c.image ? (
-                            <img src={c.image} alt="" className="size-10 rounded-lg object-cover sm:size-12" />
+                            <img src={c.image} alt="" className="size-12 rounded-lg object-cover" />
                           ) : (
-                            <div className="grid size-10 place-items-center rounded-lg bg-teal/10 text-teal sm:size-12">No Img</div>
+                            <div className="grid size-12 place-items-center rounded-lg bg-teal/10 text-teal text-xs">No Img</div>
                           )}
-                          <div className="max-w-[200px]">
-                            <p className="text-[10px] font-bold text-primary sm:text-sm truncate">{c.name}</p>
-                            <p className="mt-0.5 text-[8px] text-muted-foreground sm:text-[10px] line-clamp-1">{c.text}</p>
+                          <div className="max-w-[240px]">
+                            <p className="text-sm font-bold text-primary truncate">{c.name}</p>
+                            <p className="mt-0.5 text-xs text-muted-foreground line-clamp-1">{c.text}</p>
                           </div>
                         </div>
                       </td>
                       <td className="px-4 py-4 align-middle">
-                        <div className="w-full max-w-[150px]">
-                          <div className="flex justify-between text-[9px] font-bold sm:text-xs">
+                        <div className="w-full max-w-[160px]">
+                          <div className="flex justify-between text-xs font-bold">
                             <span className="text-teal">{c.raised}%</span>
                             <span className="text-muted-foreground">{c.goal}</span>
                           </div>
@@ -213,15 +263,15 @@ export default function AdminCampaigns() {
                         </div>
                       </td>
                       <td className="px-4 py-4 align-middle">
-                        <div className="flex gap-1.5">
-                          <Link to={`/admin/campaigns/${c.id}`} className="grid h-7 place-items-center rounded-lg bg-indigo-50 px-2 text-[10px] font-bold text-indigo-600 transition hover:bg-indigo-500 hover:text-white sm:text-xs">
+                        <div className="flex gap-2">
+                          <Link to={`/admin/campaigns/${c.id}`} className="grid h-8 place-items-center rounded-lg bg-indigo-50 px-3 text-xs font-bold text-indigo-600 transition hover:bg-indigo-500 hover:text-white">
                             View Revenue
                           </Link>
-                          <button onClick={() => handleEdit(c)} className="grid size-7 place-items-center rounded-lg bg-muted text-muted-foreground transition hover:bg-teal hover:text-white">
-                            <Pencil className="size-3.5" />
+                          <button onClick={() => handleEdit(c)} className="grid size-8 place-items-center rounded-lg bg-muted text-muted-foreground transition hover:bg-teal hover:text-white">
+                            <Pencil className="size-4" />
                           </button>
-                          <button onClick={() => handleDelete(c.id)} className="grid size-7 place-items-center rounded-lg bg-red-50 text-red-500 transition hover:bg-red-500 hover:text-white">
-                            <Trash2 className="size-3.5" />
+                          <button onClick={() => handleDelete(c.id)} className="grid size-8 place-items-center rounded-lg bg-red-50 text-red-500 transition hover:bg-red-500 hover:text-white">
+                            <Trash2 className="size-4" />
                           </button>
                         </div>
                       </td>
