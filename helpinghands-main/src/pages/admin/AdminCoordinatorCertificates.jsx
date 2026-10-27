@@ -16,7 +16,7 @@ export default function AdminCoordinatorCertificates() {
   const { globalSettings } = useApp()
   
   const s = globalSettings || {}
-  const activeLogo = s.headerLogoUrl || "/images/hindu-suraksha-logo.png?notaint=1"
+  const activeLogo = s.headerLogoUrl || "/images/logo.png?notaint=1"
   const siteTitle = s.siteTitle || "Hindu Suraksha"
 
   useEffect(() => {

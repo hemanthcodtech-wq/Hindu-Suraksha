@@ -34,7 +34,7 @@ export default function CoordinatorIDCard() {
 
   if (!coord) return <p className="text-sm text-muted-foreground">Loading...</p>
 
-  const activeLogo = settings.headerLogoUrl || "/images/hindu-suraksha-logo.png?notaint=1"
+  const activeLogo = settings.headerLogoUrl || "/images/logo.png?notaint=1"
 
   const handleDownload = async () => {
     if (!cardRef.current || !coord) return

@@ -1,89 +1,80 @@
 export const hero = {
-  title: "Sanatan Dharma, Seva & Suraksha",
+  title: "Sanatan Seva, Orphan Care & Suraksha",
   subtitle:
-    "Dedicated to the preservation of sacred temples, Gau Seva, cultural values, and extending selfless humanitarian aid and protection to all communities.",
+    "Empowering vulnerable Hindu orphan children through free quality education, loving adoption guidance, daily nutritious meals, and holistic shelter under sacred cultural values.",
   image: "/images/hero-community.png",
 }
 
 export const stats = [
-  { id: 1, icon: "heart", value: "15,000+", label: "Lives Changed", color: "accent" },
-  { id: 2, icon: "graduation", value: "2,500+", label: "Children Educated", color: "primary" },
-  { id: 3, icon: "utensils", value: "50,000+", label: "Meals Distributed", color: "accent" },
-  { id: 4, icon: "users", value: "800+", label: "Active Volunteers", color: "primary" },
+  { id: 1, icon: "heart", value: "3,500+", label: "Orphans Sheltered & Nurtured", color: "accent" },
+  { id: 2, icon: "graduation", value: "8,200+", label: "Children on Free Education", color: "primary" },
+  { id: 3, icon: "utensils", value: "1,50,000+", label: "Free Meals (Annadanam)", color: "accent" },
+  { id: 4, icon: "users", value: "1,200+", label: "Devoted Sevaks & Guardians", color: "primary" },
 ]
 
 export const mission = {
-  eyebrow: "OUR MISSION",
-  title: "We Serve, We Care, We Empower",
-  body: "Hindu Suraksha is committed to creating opportunities for children, women, elderly and families through education, healthcare, food support and community development.",
+  eyebrow: "OUR SACRED MISSION",
+  title: "Shelter, Educate & Uplift Every Child with Love",
+  body: "Hindu Suraksha is committed to protecting vulnerable and orphaned Hindu children by providing warm shelter, free full-term schooling, healthcare, nutritious food, and legal adoption facilitation into loving homes.",
 }
 
 export const causes = [
-  { id: 1, icon: "sparkles", title: "Temple Preservation", color: "primary", items: ["Ancient Heritage Restoration", "Pilgrimage Assistance", "Ritual Preservation"] },
-  { id: 2, icon: "heart", title: "Gau Seva & Care", color: "accent", items: ["Gaushala Support", "Nutritious Fodder", "Veterinary Camps"] },
-  { id: 3, icon: "utensils", title: "Annadanam (Food Seva)", color: "primary", items: ["Daily Temple Prasad", "Emergency Ration Kits", "Festival Distribution"] },
-  { id: 4, icon: "graduation", title: "Youth & Samskara", color: "accent", items: ["Cultural Education", "Value Workshops", "Self-Defense & Fitness"] },
+  { id: 1, icon: "graduation", title: "Free Education for Orphans", color: "primary", items: ["School & College Sponsorship", "Books, Uniforms & Digital Learning", "Vedic & Moral Samskara Training"] },
+  { id: 2, icon: "heart", title: "Child Adoption & Foster Care", color: "accent", items: ["Legal Adoption Facilitation", "Loving Foster Family Matching", "Child Protection & Counseling"] },
+  { id: 3, icon: "utensils", title: "Nitya Annadanam (Free Meals)", color: "primary", items: ["Three Daily Satvik Meals", "Nutritional Health Checks", "Mid-Day Meal Support"] },
+  { id: 4, icon: "sparkles", title: "Sanatan Values & Shelter", color: "accent", items: ["Safe Residential Ashrams", "Health & Emotional Care", "Temple & Cultural Heritage Roots"] },
 ]
 
 export const impact = {
   title: "OUR IMPACT",
   stats: [
-    { id: 1, icon: "users", value: "50,000+", label: "Devotees & Families" },
-    { id: 2, icon: "map", value: "250+", label: "Centers & Villages" },
-    { id: 3, icon: "briefcase", value: "500+", label: "Seva Projects" },
+    { id: 1, icon: "users", value: "12,000+", label: "Children & Families Supported" },
+    { id: 2, icon: "map", value: "180+", label: "Centers & Gurukuls" },
+    { id: 3, icon: "briefcase", value: "450+", label: "Adoptions & Foster Placements" },
     { id: 4, icon: "sprout", value: "3,200+", label: "Dedicated Sevaks" },
   ],
 }
 
 export const programs = [
-  { id: 1, title: "Heritage & Temple Restoration", description: "Renovating neglected heritage temples, organizing sacred rituals, and supporting pujaris.", image: "/images/hero-community.png", tag: "Preservation" },
-  { id: 2, title: "Nitya Annadanam & Food Relief", description: "Providing nutritious satvik food and prasad to pilgrims, students, and underprivileged families.", image: "/images/annadanam-seva.png", tag: "Annadanam" },
-  { id: 3, title: "Gau Raksha & Gaushala Sustenance", description: "Rescuing vulnerable cattle, creating self-sufficient gaushalas, and veterinary care drives.", image: "/images/volunteers.png", tag: "Gau Seva" },
+  { id: 1, title: "Vidya Jyoti: Free Education for Orphans", description: "Providing 100% free English-medium and Vedic schooling, study supplies, and mentorship for underprivileged children.", image: "/images/hero-community.png", tag: "Free Education" },
+  { id: 2, title: "Nitya Annadanam: Daily Nourishing Meals", description: "Ensuring zero hunger among orphan children and destitute youth with wholesome, three-time satvik daily meals.", image: "/images/annadanam-seva.png", tag: "Free Meals" },
+  { id: 3, title: "Sneha Bandhan: Adoption & Foster Care", description: "Guiding verified families through safe, transparent, and loving adoption processes to give every orphan child a caring home.", image: "/images/volunteers.png", tag: "Adoption Seva" },
 ]
 
 export const volunteer = {
-  title: "Join Hindu Suraksha as a Sevak",
-  subtitle: "Devote your time and energy to our timeless culture and collective welfare.",
-  items: ["Temple Seva", "Heritage Preservation", "Annadanam", "Gaushala Care"],
+  title: "Join as a Guardian & Sevak for Children",
+  subtitle: "Dedicate your time to teach, mentor, feed, and support orphaned children in our care.",
+  items: ["Teaching & Tutoring", "Meal Preparation & Annadanam", "Child Adoption Counseling", "Ashram & Seva Care"],
   image: "/images/hero-community.png",
 }
 
 export const donationTiers = [
-  { id: 1, amount: "₹500", label: "Annadanam Support", description: "Provides nourishing satvik meals for 10 pilgrims" },
-  { id: 2, amount: "₹1,500", label: "Gau Seva Fodder", description: "Weekly nutrition and veterinary care for a rescued cow" },
-  { id: 3, amount: "₹5,000", label: "Temple Rejuvenation", description: "Supports lighting, restoration and daily puja supplies" },
+  { id: 1, amount: "₹600", label: "Monthly Meals for 1 Child", description: "Provides nourishing hot satvik meals for an orphaned child for a whole month" },
+  { id: 2, amount: "₹1,800", label: "Full Schooling Kit & Books", description: "Sponsors school fees, textbooks, notebooks, uniform, and digital study tools" },
+  { id: 3, amount: "₹5,000", label: "Complete Orphan Care Sponsorship", description: "Covers monthly healthcare, boarding, clothing, nutritious diet, and tutoring" },
 ]
 
 export const gallery = [
-  "/images/gallery-1.png",
-  "/images/gallery-2.png",
-  "/images/gallery-3.png",
-  "/images/gallery-4.png",
-  "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1494386346843-e12284507169?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1504159506876-f8338247a14a?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1594708767771-a7502209ff51?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1559027615-028f8e3c5a5f?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1573497161079-f3fdc0a7b6f0?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1489493585363-d69421e0edd3?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1509099836639-18ba02c0c4c5?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=700&q=80",
-  "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=700&q=80",
+  "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80",
+  "/images/annadanam-seva.png",
+  "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1494386346843-e12284507169?auto=format&fit=crop&w=800&q=80",
+  "/images/mission-seva.png",
+  "https://images.unsplash.com/photo-1594708767771-a7502209ff51?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1509099836639-18ba02c0c4c5?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=800&q=80",
 ]
 
 export const testimonials = [
-  { id: 1, quote: "Hindu Suraksha transformed our village. Their support in education and healthcare is truly life-changing.", name: "Ramesh Kumar", role: "Village Head, Rajasthan", avatar: "/images/ramesh.png", rating: 5 },
-  { id: 2, quote: "The medical camps reached families who had never seen a doctor before. I am grateful for their compassion and care.", name: "Anita Sharma", role: "Community Nurse, UP", avatar: "/images/ramesh.png", rating: 5 },
-  { id: 3, quote: "The education drive gave our children confidence, learning materials and a real reason to dream bigger.", name: "Meena Devi", role: "Parent, Andhra Pradesh", avatar: "/images/ramesh.png", rating: 5 },
-  { id: 4, quote: "Volunteering with the foundation helped me turn a few free hours each week into meaningful community service.", name: "Rahul Verma", role: "Volunteer, Bengaluru", avatar: "/images/ramesh.png", rating: 5 },
-  { id: 5, quote: "Their relief work was organized, respectful and reached families when they needed support the most.", name: "Suresh Rao", role: "Community Leader, Telangana", avatar: "/images/ramesh.png", rating: 5 },
+  { id: 1, quote: "Adopting through Hindu Suraksha gave our home its greatest joy. Their ethical guidance and dedication to the children are unmatched.", name: "Sunil & Shalini Joshi", role: "Adoptive Parents, Pune", avatar: "/images/ramesh.png", rating: 5 },
+  { id: 2, quote: "Seeing orphan boys and girls receive quality schooling, English tutoring, and daily hot meals has inspired our whole neighborhood to contribute.", name: "Anita Sharma", role: "School Principal, UP", avatar: "/images/ramesh.png", rating: 5 },
+  { id: 3, quote: "The free education sponsorship gave these bright young minds books, uniforms, and a genuine chance to thrive with dignity.", name: "Meena Devi", role: "Ashram Caretaker, Andhra Pradesh", avatar: "/images/ramesh.png", rating: 5 },
+  { id: 4, quote: "Volunteering to teach and distribute warm Annadanam meals to orphan children here has been the most fulfilling seva of my life.", name: "Rahul Verma", role: "Sevak & Tutor, Bengaluru", avatar: "/images/ramesh.png", rating: 5 },
+  { id: 5, quote: "Every rupee goes directly to children's food, healthcare, and education. The transparency and care here are exemplary.", name: "Suresh Rao", role: "Guardian & Donor, Telangana", avatar: "/images/ramesh.png", rating: 5 },
 ]
 
 export const news = [

@@ -7,7 +7,7 @@ export default function MemberDocuments() {
   const idCardRef = useRef(null)
 
   const s = globalSettings || {}
-  const logo = "/images/hindu-suraksha-logo.png"
+  const logo = "/images/logo.png"
 
   const loadImage = (src) =>
     new Promise((resolve) => {

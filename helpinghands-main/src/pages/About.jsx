@@ -9,10 +9,10 @@ import Testimonials from "../components/Testimonials"
 import { useApp } from "../context/AppContext"
 
 const VALUES = [
-  { icon: Heart, title: "Dharma & Seva", desc: "Selfless service grounded in righteous action and cultural pride.", color: "accent" },
-  { icon: Target, title: "Heritage Protection", desc: "Active preservation of ancient temples, Gaushalas and sacred sites.", color: "primary" },
-  { icon: Users, title: "Community Solidarity", desc: "Uniting devotees, youth, and families for collective well-being.", color: "accent" },
-  { icon: Zap, title: "Integrity & Trust", desc: "100% transparent utilization of seva contributions on the ground.", color: "primary" },
+  { icon: Heart, title: "Orphan Care & Shelter", desc: "Providing loving homes, safe ashrams, and emotional guidance to parentless children.", color: "accent" },
+  { icon: Target, title: "100% Free Education", desc: "Full schooling, textbooks, uniforms, and mentorship from primary to college level.", color: "primary" },
+  { icon: Users, title: "Adoption & Foster Care", desc: "Facilitating legal, ethical, and loving foster and adoption homes for Hindu orphans.", color: "accent" },
+  { icon: Zap, title: "Nitya Annadanam", desc: "Serving wholesome, nutritious, and satvik daily meals so no child goes hungry.", color: "primary" },
 ]
 
 const LEADERSHIP = [
@@ -51,10 +51,10 @@ export default function About() {
               About Hindu Suraksha
             </span>
             <h1 className="mt-4 font-heading text-3xl font-extrabold leading-[1.08] tracking-[-0.03em] sm:text-5xl lg:text-[56px]">
-              Dharma, Seva &amp; Community Protection
+              Orphan Care, Education &amp; Free Meals
             </h1>
             <p className="mt-4 text-sm leading-relaxed text-white/90 sm:text-base sm:leading-8">
-              Hindu Suraksha is dedicated to upholding the timeless principles of Sanatan Dharma, preserving ancient temples, safeguarding indigenous cattle through Gaushalas, and uplifting all communities through nutritious Annadanam and youth empowerment.
+              Hindu Suraksha is dedicated to providing loving shelter, full-term free education, and nutritional food support to orphaned Hindu children, while guiding prospective parents through legal, ethical adoptions and preserving our timeless cultural values.
             </p>
           </motion.div>
         </div>
@@ -68,10 +68,10 @@ export default function About() {
               Our Mission
             </span>
             <h2 className="mt-4 font-heading text-xl font-extrabold text-[#0d2040] sm:text-2xl">
-              Preserve Heritage &amp; Protect Communities
+              Nurture, Educate &amp; Find Loving Homes
             </h2>
             <p className="mt-3 text-xs leading-relaxed text-[#475467] sm:text-sm sm:leading-7">
-              To safeguard temples, protect sacred traditions, provide sustainable fodder and healthcare to gaushalas, and ensure daily Annadanam reaches the underprivileged with love and reverence.
+              To rescue and nurture every parentless child, provide 100% free quality education with Samskaras, ensure three nutritious meals daily, and facilitate smooth, transparent adoptions into supportive Hindu families.
             </p>
           </FadeIn>
           <FadeIn delay={0.1} className="rounded-3xl border border-[#fed7aa]/60 bg-gradient-to-br from-white to-[#fff8f0] p-6 shadow-sm sm:p-8">
@@ -79,10 +79,10 @@ export default function About() {
               Our Vision
             </span>
             <h2 className="mt-4 font-heading text-xl font-extrabold text-[#0d2040] sm:text-2xl">
-              An Awakened, Prosperous Society
+              No Orphan Left Uncared or Uneducated
             </h2>
             <p className="mt-3 text-xs leading-relaxed text-[#475467] sm:text-sm sm:leading-7">
-              A united social fabric where ancient cultural pride thrives, youth are mentored in ethical Samskaras, and no sacred heritage site or vulnerable individual is left neglected.
+              A compassionate society where every child enjoys a family's warmth, receives higher education and career opportunities, and grows up rooted in cultural dignity and moral values.
             </p>
           </FadeIn>
         </div>

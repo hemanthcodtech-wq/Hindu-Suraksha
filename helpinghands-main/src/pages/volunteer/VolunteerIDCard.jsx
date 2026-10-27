@@ -58,7 +58,7 @@ export default function VolunteerIDCard() {
       ctx.fillRect(0, 236, W, 24)
 
       // Try loading logo from Cloudinary
-      const logoImg = await loadImage("/images/hindu-suraksha-logo.png")
+      const logoImg = await loadImage("/images/logo.png")
       if (logoImg) {
         ctx.drawImage(logoImg, (W - 80) / 2, 24, 80, 80)
       }

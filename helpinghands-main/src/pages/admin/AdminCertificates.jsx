@@ -61,7 +61,7 @@ export default function AdminCertificates() {
   const { globalSettings } = useApp()
   
   const s = globalSettings || {}
-  const activeLogo = s.headerLogoUrl || "/images/hindu-suraksha-logo.png?notaint=1"
+  const activeLogo = s.headerLogoUrl || "/images/logo.png?notaint=1"
   const siteTitle = s.siteTitle || "Hindu Suraksha"
 
   const selectedType = CERTIFICATE_TYPES.find((t) => t.id === type)

@@ -24,7 +24,7 @@ function VolunteerIDPreview({ selected, recipientType, globalSettings }) {
       {/* Header */}
       <div className="bg-[#4a8a2a] px-6 pt-5 pb-12 text-white text-center flex flex-col items-center">
         <img
-          src="/images/hindu-suraksha-logo.png"
+          src="/images/logo.png"
           alt="Logo"
           className="h-10 w-auto mb-2"
           crossOrigin="anonymous"
@@ -155,7 +155,7 @@ export default function AdminDocuments() {
     const volId = `VOL-${String(selected.id).padStart(4, "0")}`
     const phone = selected.phone || "N/A"
     const bloodGroup = selected.blood_group || "O+"
-    const logoUrl = "/images/hindu-suraksha-logo.png"
+    const logoUrl = "/images/logo.png"
     const recipientLabel = recipientType === "volunteer" ? "Volunteer" : recipientType === "donor" ? "Donor" : "Member"
 
     const idCardHtml = type === "certificate" ? `
@@ -294,7 +294,7 @@ export default function AdminDocuments() {
       ctx.fill()
 
       // Logo
-      const logoImg = await loadImage("/images/hindu-suraksha-logo.png")
+      const logoImg = await loadImage("/images/logo.png")
       if (logoImg) ctx.drawImage(logoImg, (W - 80) / 2, 24, 80, 80)
 
       ctx.fillStyle = "#ffffff"
@@ -487,7 +487,7 @@ export default function AdminDocuments() {
 
               {/* Watermark Background Emblem */}
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.035]">
-                <img src="/images/hindu-suraksha-logo.png" alt="Watermark" className="size-80 sm:size-96 object-contain" />
+                <img src="/images/logo.png" alt="Watermark" className="size-80 sm:size-96 object-contain" />
               </div>
 
               {/* Certificate Inner Content with proper flex containment */}
@@ -496,7 +496,7 @@ export default function AdminDocuments() {
                 {/* Header with Emblem */}
                 <div>
                   <div className="mx-auto flex size-12 sm:size-16 items-center justify-center drop-shadow-md">
-                    <img src="/images/hindu-suraksha-logo.png" alt="Hindu Suraksha Emblem" className="size-full object-contain" />
+                    <img src="/images/logo.png" alt="Hindu Suraksha Emblem" className="size-full object-contain" />
                   </div>
                   <p className="mt-1 text-[10px] font-black uppercase tracking-[0.25em] text-[#e65100] sm:text-xs font-sans">
                     HINDU SURAKSHA TRUST

@@ -6,10 +6,12 @@ import { hero } from "../data/content"
 export default function Hero() {
   return (
     <section id="home" className="relative overflow-hidden home-hero pt-6 pb-12 sm:pt-10 sm:pb-16 lg:py-20">
-      {/* Background Decorative Ambient Glows */}
-      <div className="pointer-events-none absolute -top-24 -left-24 size-96 rounded-full bg-[#ff9800]/20 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-32 right-0 size-[500px] rounded-full bg-[#e65100]/25 blur-3xl" />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[650px] rounded-full bg-[#0d2040]/40 blur-3xl" />
+      {/* Background Decorative Ambient Glows with Thick Saturated Blue and Orange */}
+      <div className="pointer-events-none absolute -top-10 -left-10 size-[500px] rounded-full bg-[#0a3578]/80 blur-[90px]" />
+      <div className="pointer-events-none absolute top-1/4 -left-20 size-[450px] rounded-full bg-[#07214a]/90 blur-[100px]" />
+      <div className="pointer-events-none absolute -bottom-20 -right-10 size-[550px] rounded-full bg-[#ff5100]/65 blur-[90px]" />
+      <div className="pointer-events-none absolute bottom-10 right-1/4 size-[400px] rounded-full bg-[#e65100]/60 blur-[80px]" />
+      <div className="pointer-events-none absolute top-10 right-0 size-[400px] rounded-full bg-[#ff6d00]/55 blur-[80px]" />
       
       {/* Subtle Sacred Geometry Pattern Overlay */}
       <div 
@@ -33,17 +35,17 @@ export default function Hero() {
           <div className="inline-flex items-center gap-2 rounded-full border border-[#ffb74d]/30 bg-gradient-to-r from-[#e65100]/40 to-[#0d2040]/60 px-3.5 py-1.5 backdrop-blur-md shadow-inner">
             <span className="flex size-2 rounded-full bg-[#ff9800] animate-pulse" />
             <span className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#ffcc80] sm:text-xs">
-              Sanatan Dharma &bull; Seva &bull; Suraksha
+              Orphan Welfare &bull; Education &bull; Annadanam
             </span>
           </div>
 
           {/* Main Title */}
           <h1 className="mt-4 font-heading text-[clamp(2.1rem,6vw,4.25rem)] font-extrabold leading-[1.08] tracking-[-0.035em] text-white">
-            Protecting Heritage, <br className="hidden sm:inline" />
+            Nurturing Orphans, <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-[#ffcc80] via-[#ffa726] to-[#ff7043] bg-clip-text text-transparent">
-              Empowering Devotees
+              Free Education, Meals
             </span> <br />
-            &amp; Community Seva
+            &amp; Loving Adoption
           </h1>
 
           {/* Subtitle */}
@@ -54,16 +56,16 @@ export default function Hero() {
           {/* Feature Highlights Pills */}
           <div className="mt-4 flex flex-wrap justify-center gap-1.5 sm:justify-start sm:gap-2.5">
             <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/10 px-2.5 py-1 text-[10px] font-semibold text-white/95 backdrop-blur-sm sm:text-[11px]">
-              <Landmark className="size-3 text-[#ffcc80] sm:size-3.5" /> Mandir Revival
+              <Heart className="size-3 text-[#ff7043] sm:size-3.5" /> Orphan Care &amp; Shelter
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/10 px-2.5 py-1 text-[10px] font-semibold text-white/95 backdrop-blur-sm sm:text-[11px]">
-              <Heart className="size-3 text-[#ff7043] sm:size-3.5" /> Gau Seva &amp; Shelters
+              <Users className="size-3 text-[#ffcc80] sm:size-3.5" /> Adoption &amp; Foster
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/10 px-2.5 py-1 text-[10px] font-semibold text-white/95 backdrop-blur-sm sm:text-[11px]">
-              <Sun className="size-3 text-[#ffcc80] sm:size-3.5" /> Daily Annadanam
+              <Sun className="size-3 text-[#ffcc80] sm:size-3.5" /> 100% Free Education
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/10 px-2.5 py-1 text-[10px] font-semibold text-white/95 backdrop-blur-sm sm:text-[11px]">
-              <ShieldCheck className="size-3 text-[#ffb74d] sm:size-3.5" /> 80G Tax Benefit
+              <Flame className="size-3 text-[#ff9800] sm:size-3.5" /> Daily Free Annadanam
             </span>
           </div>
 
@@ -73,7 +75,7 @@ export default function Hero() {
               to="/donate"
               className="group flex min-h-11 items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#e65100] via-[#f57c00] to-[#ff9800] px-3 py-2.5 text-xs font-extrabold text-white shadow-xl shadow-orange-950/40 transition hover:brightness-110 active:scale-95 sm:min-h-12 sm:px-7 sm:py-3 sm:text-sm whitespace-nowrap"
             >
-              <span>Contribute Seva</span>
+              <span>Support a Child</span>
               <Heart className="size-3.5 fill-current transition group-hover:scale-110 sm:size-4" />
             </NavLink>
 
@@ -89,18 +91,18 @@ export default function Hero() {
           {/* Trust Stat Micro-strip */}
           <div className="mt-7 flex items-center justify-center gap-4 border-t border-white/15 pt-4 text-white/80 sm:justify-start sm:gap-8 sm:pt-5">
             <div>
-              <div className="font-heading text-lg font-extrabold text-white sm:text-2xl">450+</div>
-              <div className="text-[9px] font-medium uppercase tracking-wider text-white/70 sm:text-[10px]">Desi Cows Sheltered</div>
+              <div className="font-heading text-lg font-extrabold text-white sm:text-2xl">3,500+</div>
+              <div className="text-[9px] font-medium uppercase tracking-wider text-white/70 sm:text-[10px]">Orphans Sheltered</div>
             </div>
             <div className="h-6 w-px bg-white/20 sm:h-7" />
             <div>
-              <div className="font-heading text-lg font-extrabold text-white sm:text-2xl">50,000+</div>
-              <div className="text-[9px] font-medium uppercase tracking-wider text-white/70 sm:text-[10px]">Annadanam Meals</div>
+              <div className="font-heading text-lg font-extrabold text-white sm:text-2xl">8,200+</div>
+              <div className="text-[9px] font-medium uppercase tracking-wider text-white/70 sm:text-[10px]">Free Schooling</div>
             </div>
             <div className="h-6 w-px bg-white/20 sm:h-7" />
             <div>
-              <div className="font-heading text-lg font-extrabold text-white sm:text-2xl">1,200+</div>
-              <div className="text-[9px] font-medium uppercase tracking-wider text-white/70 sm:text-[10px]">Dedicated Sevaks</div>
+              <div className="font-heading text-lg font-extrabold text-white sm:text-2xl">1,50,000+</div>
+              <div className="text-[9px] font-medium uppercase tracking-wider text-white/70 sm:text-[10px]">Free Meals Served</div>
             </div>
           </div>
         </motion.div>
@@ -139,8 +141,8 @@ export default function Hero() {
                     <ShieldCheck className="size-5 sm:size-6" />
                   </div>
                   <div>
-                    <h2 className="text-[11px] font-extrabold sm:text-sm">100% Transparent Seva</h2>
-                    <p className="text-[9px] text-muted-foreground sm:text-xs">Direct impact &bull; Tax exempted under 80G</p>
+                    <h2 className="text-[11px] font-extrabold sm:text-sm">100% Free Child Sponsorship</h2>
+                    <p className="text-[9px] text-muted-foreground sm:text-xs">Education, meals &amp; shelter &bull; 80G tax benefit</p>
                   </div>
                 </div>
                 <NavLink

@@ -19,7 +19,7 @@ const NAV_LINKS = [
   { label: "Contact", to: "/contact" }
 ]
 
-const LOGO_URL = "/images/hindu-suraksha-logo.png"
+const LOGO_URL = "/images/logo.png"
 const NEWS_ITEMS = ["Helping communities. Creating hope.", "Volunteer with Hindu Suraksha and make an impact.", "Every contribution helps us reach another family in need."]
 const SOCIAL_LINKS = [
   { label: "Facebook", type: "facebook", href: "https://www.facebook.com/share/1BxmkxsXcT/" },
@@ -116,21 +116,13 @@ export default function Header() {
     <header className={`sticky top-0 z-[100] w-full max-w-full border-b border-border bg-card/95 backdrop-blur-md transition-shadow ${scrolled ? "shadow-md" : ""}`}>
       <div className="flex h-[68px] w-full min-w-0 items-center justify-between gap-1 px-2 sm:h-[82px] sm:gap-2 sm:px-5 lg:h-[97px] lg:px-6">
         <button type="button" onClick={() => setMobileOpen(v => !v)} aria-label="Toggle navigation" className="order-first grid size-9 shrink-0 place-items-center rounded-xl text-teal lg:hidden"><span className="relative size-5"><Menu className={`absolute inset-0 size-5 ${mobileOpen ? "opacity-0" : "opacity-100"}`} /><X className={`absolute inset-0 size-5 ${mobileOpen ? "opacity-100" : "opacity-0"}`} /></span></button>
-        <NavLink to="/" className="group flex min-w-0 max-w-[calc(100%-140px)] shrink items-center gap-2 sm:max-w-none sm:gap-3">
-          <span className="grid size-14 shrink-0 place-items-center overflow-visible sm:size-18 lg:size-24">
+        <NavLink to="/" aria-label={s.siteTitle || "Hindu Suraksha"} className="group flex shrink-0 items-center">
+          <span className="flex items-center justify-center">
             <img 
               src={activeLogo} 
               alt={s.siteTitle || "Hindu Suraksha"} 
-              className="size-14 scale-125 object-contain sm:size-16 sm:scale-110 lg:size-21 lg:scale-100 transition-transform" 
+              className="h-14 w-auto max-w-[170px] scale-110 object-contain sm:h-18 sm:max-w-[210px] sm:scale-115 lg:h-22 lg:max-w-[260px] lg:scale-120 transition-transform group-hover:scale-125" 
             />
-          </span>
-          <span className="min-w-0 leading-tight">
-            <span className="block truncate font-heading text-[14px] font-extrabold tracking-tight text-primary sm:text-[15px] lg:text-[16px]">
-              {s.siteTitle || "HINDU SURAKSHA"}
-            </span>
-            <span className="block truncate text-[10px] font-bold uppercase tracking-[0.08em] text-[#ff9800] sm:text-[9px] lg:text-[10px]">
-              {s.siteSubtitle || "Dharma, Seva & Suraksha"}
-            </span>
           </span>
         </NavLink>
         <nav className="hidden min-w-0 flex-nowrap items-center gap-2.5 sm:gap-3 xl:gap-4.5 2xl:gap-6 lg:flex" aria-label="Primary">
