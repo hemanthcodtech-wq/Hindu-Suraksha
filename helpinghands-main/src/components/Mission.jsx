@@ -1,7 +1,6 @@
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ShieldCheck, Heart, Users, Sparkles } from "lucide-react"
 import { NavLink } from "react-router-dom"
 import { mission } from "../data/content"
-import Logo from "./Common/Logo"
 import FadeIn from "./Common/FadeIn"
 
 export default function Mission() {
@@ -18,7 +17,7 @@ export default function Mission() {
                 {mission.eyebrow}
               </span>
               
-              <h2 className="mt-3.5 font-heading text-2xl font-extrabold leading-[1.12] text-[#0d2040] sm:text-4xl lg:text-[42px]">
+              <h2 className="mt-3.5 font-heading text-2xl font-extrabold leading-[1.15] text-[#0d2040] sm:text-4xl lg:text-[40px]">
                 {mission.title}
               </h2>
               
@@ -26,19 +25,35 @@ export default function Mission() {
                 {mission.body}
               </p>
 
+              {/* Highlight Banner with Goal */}
+              <div className="mt-5 rounded-2xl border border-[#fed7aa]/80 bg-[#fff3e0]/60 p-4 sm:p-5">
+                <p className="font-heading text-sm font-extrabold text-[#9a3412] sm:text-base">
+                  {mission.goal}
+                </p>
+                <p className="mt-1.5 text-xs text-[#7c2d12] sm:text-sm">
+                  Our mission ensures orphaned and underprivileged Hindu children have access to education, healthcare, and nutritious food, while economically disadvantaged Hindu families receive support, dignity, and hope during difficult times.
+                </p>
+              </div>
+
               <div className="mt-6 flex flex-wrap items-center gap-3.5 sm:mt-8">
                 <NavLink
-                  to="/about"
+                  to="/donate"
                   className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-gradient-to-r from-[#e65100] to-[#ff9800] px-6 py-2.5 text-xs font-bold text-white shadow-lg shadow-[#e65100]/20 transition hover:brightness-105 active:scale-95 sm:text-sm"
                 >
-                  Read More
+                  Join as a Member — ₹50
                   <ArrowRight className="size-4" />
                 </NavLink>
                 <NavLink
                   to="/programs"
                   className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[#fed7aa] bg-white px-5 py-2.5 text-xs font-bold text-[#e65100] transition hover:bg-[#fff3e0] sm:text-sm"
                 >
-                  View Seva Projects
+                  Explore Our Initiatives
+                </NavLink>
+                <NavLink
+                  to="/about"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-transparent px-4 py-2.5 text-xs font-semibold text-[#0d2040] transition hover:underline sm:text-sm"
+                >
+                  About Our Organization
                 </NavLink>
               </div>
             </div>
@@ -53,10 +68,13 @@ export default function Mission() {
                   decoding="async"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d2040]/70 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d2040]/80 via-transparent to-transparent opacity-90" />
                 <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <p className="text-xs font-extrabold tracking-wide uppercase text-[#ffcc80]">Grassroots Social Impact</p>
-                  <p className="text-[11px] text-white/90">Uplifting communities with dignity &amp; care</p>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#e65100]/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                    <ShieldCheck className="size-3" /> Community Driven
+                  </span>
+                  <p className="mt-1.5 text-xs font-extrabold sm:text-sm text-white">United for Protection &bull; Committed to Welfare</p>
+                  <p className="text-[11px] text-white/80">Service, Compassion &amp; Collective Responsibility</p>
                 </div>
               </div>
             </div>

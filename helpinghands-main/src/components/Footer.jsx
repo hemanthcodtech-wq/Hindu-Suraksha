@@ -4,11 +4,11 @@ import { ChevronDown, ChevronUp, Heart, MessageCircle, Music2, Phone, ShieldChec
 import { useApp } from "../context/AppContext"
 
 const COLUMNS = [
-  { title: "ABOUT US", links: [["About Hindu Suraksha", "/about"], ["Leadership Desk", "/about#leadership"], ["Certificates & 12A/80G", "/about#certificates"], ["Governance & Trust", "/about#governance"], ["Seva QR", "/about#seva-qr"]] },
-  { title: "OUR WORK", links: [["Programs", "/programs"], ["Gaushala & Gau Seva", "/programs"], ["Mandir Renovation", "/programs"], ["Annadanam Seva", "/programs"], ["Dharma Shiksha", "/programs"]] },
-  { title: "CAMPAIGNS", links: [["Vedic Heritage Drive", "/campaigns"], ["Gaushala Protection", "/campaigns"], ["Daily Annadanam", "/campaigns"], ["Temple Reconstruction", "/campaigns"], ["All Campaigns", "/campaigns"]] },
-  { title: "GET INVOLVED", links: [["Donate", "/donate"], ["Become a Sevak", "/support-us"], ["Volunteer Registration", "/volunteer"], ["Support Us", "/support-us"], ["Partner With Us", "/contact"]] },
-  { title: "RESOURCE CENTRE", links: [["Certificates & 80G", "/about#certificates"], ["Photos", "/resources/photos"], ["Videos", "/resources/videos"], ["Achievements & Awards", "/resources/achievements-awards"], ["Press Stories", "/resources/press-stories"], ["Events", "/events"]] },
+  { title: "ABOUT US", links: [["About Hindu Suraksha", "/about"], ["Our Vision & Mission", "/about"], ["Dharma & Heritage", "/about"], ["Transparency & Trust", "/about"], ["Contact Us", "/contact"]] },
+  { title: "WELFARE INITIATIVES", links: [["Education for Children", "/programs"], ["Medical Assistance", "/programs"], ["Food & Nutrition Support", "/programs"], ["Financial Assistance", "/programs"], ["All Programs", "/programs"]] },
+  { title: "MEMBERSHIP & DONATE", links: [["Join Membership (₹50)", "/donate"], ["Donate to Mission", "/donate"], ["Sponsor a Child", "/donate"], ["Support a Family", "/donate"], ["Donation Policy", "/about/refund"]] },
+  { title: "GET INVOLVED", links: [["Become a Volunteer", "/volunteer"], ["Volunteer Sign In", "/volunteer/login"], ["Support Us", "/support-us"], ["Partner With Us", "/contact"], ["Upcoming Events", "/events"]] },
+  { title: "GOVERNANCE", links: [["Transparency & Records", "/about"], ["Terms & Conditions", "/about/terms"], ["Privacy Policy", "/about/privacy"], ["Refund Policy", "/about/refund"], ["Grievance Redressal", "/contact"]] },
 ]
 
 function FooterColumn({ title, links }) {
@@ -40,8 +40,8 @@ export default function Footer() {
         <div className="lg:hidden">{COLUMNS.map(column => <MobileColumn key={column.title} {...column} />)}</div>
       </div>
       <div className="border-t border-white/15"><div className="mx-auto grid max-w-[1600px] gap-8 px-5 py-8 sm:px-10 lg:grid-cols-[1.05fr_1.45fr_.65fr] lg:gap-12 lg:px-16 lg:py-10">
-        <div><h3 className="text-base font-extrabold sm:text-lg">{siteTitle}</h3><p className="mt-3 text-xs leading-6 text-white/75 sm:text-sm">{s.metaDescription || "Helping communities through education, healthcare, food support and empowerment."}</p><p className="mt-3 text-xs leading-6 text-white/75 sm:text-sm">Head Office: {addressHead}</p><p className="mt-1 text-xs leading-6 text-white/75 sm:text-sm">Working Present: {addressPresent}</p><p className="mt-1 text-xs leading-6 text-white/75 sm:text-sm">Calling: {phonePrimary}</p><p className="mt-1 text-xs leading-6 text-white/75 sm:text-sm">WhatsApp: {phoneWhatsApp}</p><p className="mt-1 text-xs leading-6 text-white/75 sm:text-sm">Email: {emailPrimary}</p><p className="mt-2 text-xs text-white/75 sm:text-sm">{workingHours}</p></div>
-        <div className="flex items-start"><p className="max-w-[650px] text-sm leading-7 text-white/75 sm:text-base">Hindu Suraksha works with communities to create lasting opportunities for children, women, families and vulnerable groups across India.</p></div>
+        <div><h3 className="text-base font-extrabold sm:text-lg">{siteTitle}</h3><p className="mt-3 text-xs leading-6 text-white/75 sm:text-sm">{s.metaDescription || "Protect Hindu Dharma. Support Hindu Families. Serve Humanity. A strong support system for every Hindu family."}</p><p className="mt-3 text-xs leading-6 text-white/75 sm:text-sm">Head Office: {addressHead}</p><p className="mt-1 text-xs leading-6 text-white/75 sm:text-sm">Working Present: {addressPresent}</p><p className="mt-1 text-xs leading-6 text-white/75 sm:text-sm">Calling: {phonePrimary}</p><p className="mt-1 text-xs leading-6 text-white/75 sm:text-sm">WhatsApp: {phoneWhatsApp}</p><p className="mt-1 text-xs leading-6 text-white/75 sm:text-sm">Email: {emailPrimary}</p><p className="mt-2 text-xs text-white/75 sm:text-sm">{workingHours}</p></div>
+        <div className="flex items-start"><p className="max-w-[650px] text-sm leading-7 text-white/75 sm:text-base">Hindu Suraksha is a community-driven initiative dedicated to protecting Hindu Dharma, supporting underprivileged Hindu families, and ensuring that no deserving Hindu family feels alone in times of need.</p></div>
         <div className="lg:justify-self-end"><p className="flex items-center gap-2 text-sm font-extrabold">▦ Scan to Support Us</p>
           {primaryBank && primaryBank.qr_code_url ? (
             <div className="mt-4 grid size-36 place-items-center rounded-xl bg-white p-2">

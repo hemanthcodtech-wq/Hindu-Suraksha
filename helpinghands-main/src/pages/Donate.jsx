@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Check, CheckCircle, ChevronDown, CreditCard, Download, FileText, Heart, Landmark, Lock, QrCode, ShieldCheck, Smartphone, Upload, UserRound, Wallet } from "lucide-react"
 import { useApp } from "../context/AppContext"
 
-const DONATION_AMOUNTS = [500, 1000, 2500, 5000, 11000]
+const DONATION_AMOUNTS = [50, 500, 1000, 2500, 5000, 11000]
 
 const PAYMENT_METHODS = [
   { id: "razorpay", title: "Razorpay", detail: "Card / UPI / Net Banking", icon: CreditCard },
@@ -271,10 +271,12 @@ export default function Donate() {
         <div className="mx-auto w-full max-w-[1440px] px-4 py-10 sm:px-6 sm:py-14 lg:px-10 lg:py-16">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-3xl">
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#EF9A0A]">
-              <Heart className="size-3.5 fill-current" /> Membership & Support
+              <Heart className="size-3.5 fill-current" /> Hindu Suraksha — ₹50 Membership &amp; Donation
             </div>
-            <h1 className="font-heading text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">Registration Form</h1>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/80 sm:text-base">Join Hindu Suraksha and turn your support into measurable community impact. Complete your membership details and payment verification in one guided application.</p>
+            <h1 className="font-heading text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">Membership &amp; Contribution</h1>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/80 sm:text-base">
+              Join Hindu Suraksha with an affordable ₹50 membership or donate to our welfare initiatives. Help protect Hindu Dharma, support underprivileged Hindu families, and educate orphaned children.
+            </p>
           </motion.div>
         </div>
       </section>

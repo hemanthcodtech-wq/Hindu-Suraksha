@@ -1,124 +1,116 @@
-import API_BASE from "../lib/api"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { NavLink } from "react-router-dom"
-import { useState, useEffect } from "react"
-import { causes } from "../data/content"
+import { welfareInitiatives, dharmaProtection } from "../data/content"
 import Icon from "../components/Common/Icon"
 import FadeIn from "../components/Common/FadeIn"
 import SectionHeading from "../components/Common/SectionHeading"
 
 export default function Programs() {
-  const [programs, setPrograms] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    fetch(`${API_BASE}/api/programs`)
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) setPrograms(data.programs)
-      })
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false))
-  }, [])
-
   return (
-    <main>
+    <main className="bg-background pb-16">
       {/* Hero */}
-      <section className="bg-primary-soft">
-        <div className="page-shell px-3 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#0d2040] via-[#163668] to-[#e65100] py-14 text-white sm:py-20">
+        <div className="page-shell px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-2xl"
+            transition={{ duration: 0.55 }}
+            className="max-w-3xl"
           >
-            <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.18em] text-teal sm:text-[11px]">What We Do</p>
-            <h1 className="font-heading text-[32px] font-extrabold leading-[1.04] tracking-[-0.03em] text-primary sm:text-5xl lg:text-[56px]">
-              Our Programs
+            <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#ffcc80] sm:text-xs">
+              Direct Community Impact
+            </p>
+            <h1 className="font-heading text-3xl font-extrabold sm:text-5xl lg:text-[54px]">
+              Our Welfare Programs &amp; Initiatives
             </h1>
-            <p className="mt-3 text-[10px] leading-[1.65] text-muted-foreground sm:mt-5 sm:text-sm lg:text-[15px]">
-              Every program is designed to create lasting change — not just immediate relief. We work alongside communities to build sustainable futures.
+            <p className="mt-4 text-xs leading-relaxed text-white/90 sm:text-base sm:leading-7">
+              Hindu Suraksha focuses on 4 major welfare initiatives — ensuring orphaned and underprivileged children receive education, families receive medical &amp; food aid, and economically distressed households are supported with dignity.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Program Cards */}
-      <section className="page-shell px-3 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-        {loading ? (
-          <div className="text-center py-10 text-muted-foreground text-sm">Loading programs...</div>
-        ) : (
-          <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-            {programs.map((program, i) => (
-              <FadeIn key={program.id} delay={i * 0.1}>
-                <article className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:rounded-3xl">
-                  <div className="relative aspect-[16/9] overflow-hidden bg-muted/30">
-                    {program.image_url ? (
-                      <img
-                        src={program.image_url}
-                        alt={program.title}
-                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                        decoding="async"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="h-full w-full flex items-center justify-center text-muted-foreground/50 text-xs font-bold bg-teal/5">No Image</div>
-                    )}
-                    {program.tag && (
-                      <span className="absolute left-3 top-3 rounded-full bg-teal px-2.5 py-1 text-[8px] font-bold text-white sm:text-[10px]">
-                        {program.tag}
-                      </span>
-                    )}
-                  </div>
-                  <div className="p-4 sm:p-6">
-                    <h2 className="font-heading text-[15px] font-bold text-primary sm:text-lg">{program.title}</h2>
-                    <p className="mt-1.5 text-[9px] leading-[1.6] text-muted-foreground sm:text-sm line-clamp-3">{program.description}</p>
-                    <NavLink
-                      to="/donate"
-                      className="mt-3 inline-flex items-center gap-1.5 text-[9px] font-bold text-teal transition hover:gap-2.5 sm:mt-4 sm:text-sm"
-                    >
-                      Support This Program <ArrowRight className="size-3 sm:size-4" />
-                    </NavLink>
-                  </div>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-        )}
-      </section>
+      {/* Welfare Initiatives Detailed */}
+      <section className="page-shell px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="space-y-10">
+          {welfareInitiatives.map((item, index) => (
+            <FadeIn key={item.id} delay={index * 0.1}>
+              <div className="rounded-3xl border border-[#fed7aa]/60 bg-gradient-to-br from-[#fffdfa] via-white to-[#fff8f0] p-6 shadow-sm transition hover:shadow-md sm:p-10 lg:p-12">
+                <div className="grid gap-6 lg:grid-cols-12 lg:items-center">
+                  <div className="lg:col-span-8">
+                    <span className="inline-block rounded-full bg-[#ffedd5] px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-[#9a3412]">
+                      Initiative {item.key}
+                    </span>
+                    <h2 className="mt-3 font-heading text-xl font-extrabold text-[#0d2040] sm:text-3xl">
+                      {item.title}
+                    </h2>
+                    <p className="mt-2 text-xs font-semibold italic text-[#e65100] sm:text-sm">
+                      {item.subtitle}
+                    </p>
 
-      {/* Causes */}
-      <section className="page-shell px-3 pb-8 sm:px-6 sm:pb-12 lg:px-8 lg:pb-16">
-        <FadeIn><SectionHeading>Our Focus Areas</SectionHeading></FadeIn>
-        <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-6 sm:gap-4 lg:grid-cols-4">
-          {causes.map((cause, i) => (
-            <FadeIn key={cause.id} delay={i * 0.08}>
-              <div className={`rounded-xl border p-3 sm:rounded-2xl sm:p-5 ${cause.color === "accent" ? "border-accent/20 bg-accent-soft" : "border-primary/10 bg-primary-soft"}`}>
-                <span className={`grid size-8 place-items-center rounded-full sm:size-11 ${cause.color === "accent" ? "bg-white text-accent" : "bg-white text-teal"}`}>
-                  <Icon name={cause.icon} className="size-4 sm:size-5" />
-                </span>
-                <h3 className="mt-2 text-[11px] font-bold text-primary sm:mt-3 sm:text-sm">{cause.title}</h3>
-                <ul className="mt-1.5 space-y-0.5 text-[7px] text-muted-foreground sm:mt-2 sm:space-y-1 sm:text-xs">
-                  {cause.items.map((item) => <li key={item}>• {item}</li>)}
-                </ul>
+                    <div className="mt-5 space-y-2.5 text-xs sm:text-sm text-[#475467]">
+                      {item.items.map((pt) => (
+                        <div key={pt} className="flex items-start gap-2.5">
+                          <CheckCircle2 className="size-4 shrink-0 text-[#e65100] mt-0.5" />
+                          <span>{pt}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <p className="mt-5 text-xs text-[#6b7280] italic">
+                      {item.closing}
+                    </p>
+
+                    <div className="mt-6 flex flex-wrap gap-3">
+                      <NavLink
+                        to="/donate"
+                        className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#e65100] to-[#ff9800] px-5 py-2.5 text-xs font-bold text-white shadow transition hover:brightness-105"
+                      >
+                        Support This Initiative &rarr;
+                      </NavLink>
+                      <NavLink
+                        to="/support-us"
+                        className="inline-flex items-center gap-2 rounded-xl border border-[#fed7aa] bg-white px-5 py-2.5 text-xs font-bold text-[#e65100] transition hover:bg-[#fff3e0]"
+                      >
+                        Apply for Assistance
+                      </NavLink>
+                    </div>
+                  </div>
+
+                  <div className="lg:col-span-4 flex justify-center">
+                    <div className="grid size-28 place-items-center rounded-3xl bg-[#fff3e0] text-[#e65100] border-2 border-[#fed7aa] shadow-inner sm:size-36">
+                      <Icon name={item.icon} className="size-14 sm:size-18" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </FadeIn>
           ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="page-shell px-3 pb-10 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20">
-        <FadeIn className="rounded-2xl bg-teal-dark p-6 text-center text-white sm:rounded-3xl sm:p-10">
-          <h2 className="font-heading text-[22px] font-bold sm:text-3xl">Want to Support a Program?</h2>
-          <p className="mt-2 text-[9px] text-white/80 sm:text-sm">Your donation directly funds these life-changing programs.</p>
-          <NavLink
-            to="/donate"
-            className="mt-4 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-[10px] font-bold text-white transition hover:bg-accent/90 active:scale-95 sm:mt-6 sm:text-sm"
-          >
-            Donate Now <ArrowRight className="size-3.5 sm:size-4" />
-          </NavLink>
+      {/* Cultural Protection Section */}
+      <section className="page-shell px-4 pb-12 sm:px-6 lg:px-8">
+        <FadeIn className="rounded-3xl border border-[#fed7aa]/50 bg-[#0d2040] p-6 text-white sm:p-10 lg:p-12">
+          <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#ffcc80]">
+            HERITAGE &amp; VALUES
+          </span>
+          <h2 className="mt-2 font-heading text-2xl font-extrabold sm:text-3xl">
+            {dharmaProtection.title}
+          </h2>
+          <p className="mt-2 text-xs text-white/80 sm:text-sm">
+            {dharmaProtection.description}
+          </p>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 text-xs sm:text-sm">
+            {dharmaProtection.points.map((p) => (
+              <div key={p} className="flex items-start gap-2 text-white/90">
+                <span className="size-1.5 rounded-full bg-[#ff9800] mt-1.5 shrink-0" />
+                <span>{p}</span>
+              </div>
+            ))}
+          </div>
         </FadeIn>
       </section>
     </main>

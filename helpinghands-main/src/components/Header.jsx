@@ -6,7 +6,8 @@ import { useApp } from "../context/AppContext"
 const NAV_LINKS = [
   { label: "Home", to: "/" },
   { label: "About Us", to: "/about" },
-  { label: "Programs", to: "/programs" }, { label: "Campaigns", to: "/campaigns" },
+  { label: "Programs", to: "/programs" },
+  { label: "Campaigns", to: "/campaigns" },
   { label: "Teams", to: "/teams" },
   { label: "Events & News", to: "/events", dropdown: true, menu: [{ label: "Upcoming Events", to: "/events#upcoming" }, { label: "News & Updates", to: "/events#news" }]},
   { label: "Gallery", to: "/gallery", dropdown: true, menu: [
@@ -15,12 +16,24 @@ const NAV_LINKS = [
     { label: "Achievements", to: "/achievements" }
   ]},
   { label: "Resources", to: "/resources" },
-  { label: "Support Us", to: "/support-us", dropdown: true, menu: [{ label: "Donate", to: "/donate" }, { label: "Volunteer Registration", to: "/volunteer" }, { label: "Certificates", to: "/about#certificates" }, { label: "Campaigns", to: "/campaigns" }]},
+  { label: "Support Us", to: "/support-us", dropdown: true, menu: [
+    { label: "Join Membership — ₹50", to: "/donate" },
+    { label: "Donate", to: "/donate" },
+    { label: "Volunteer Registration", to: "/volunteer" },
+    { label: "Certificates", to: "/about#certificates" },
+    { label: "Campaigns", to: "/campaigns" },
+    { label: "Partner With Us", to: "/contact" }
+  ]},
   { label: "Contact", to: "/contact" }
 ]
 
 const LOGO_URL = "/images/logo.png"
-const NEWS_ITEMS = ["Helping communities. Creating hope.", "Volunteer with Hindu Suraksha and make an impact.", "Every contribution helps us reach another family in need."]
+const NEWS_ITEMS = [
+  "Protect Hindu Dharma. Support Hindu Families. Serve Humanity.",
+  "Join the Hindu Suraksha Membership Program for just ₹50.",
+  "No Deserving Hindu Family Should Feel Alone in Times of Need.",
+  "Education for orphans • Healthcare & food support • Family welfare."
+]
 const SOCIAL_LINKS = [
   { label: "Facebook", type: "facebook", href: "https://www.facebook.com/share/1BxmkxsXcT/" },
   { label: "Instagram", type: "instagram", href: "https://www.instagram.com/helpinghandsfoundation892026?utm_source=qr&stkn=MTE5dnkxc3BsMDZsMw==" },

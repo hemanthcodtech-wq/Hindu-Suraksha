@@ -68,10 +68,10 @@ export default function TermsConditions() {
 
             <div>
               <h2 className="font-heading text-lg font-extrabold text-[#0d2040] sm:text-xl">
-                2. Voluntary Donations &amp; Tax Deductions (Section 80G)
+                2. Membership &amp; Voluntary Contributions
               </h2>
               <p className="mt-2.5">
-                All donations made to Hindu Suraksha are voluntary contributions allocated directly toward Gaushalas, Annadanam, Vedic education, and temple renovation initiatives. Donors are entitled to tax deductions under Section 80G of the Income Tax Act upon providing valid PAN details. Digital 80G receipts are automatically generated and dispatched via email.
+                Hindu Suraksha operates an accessible ₹50 membership program alongside voluntary donations. All contributions are allocated towards our 4 core welfare initiatives: child education, healthcare &amp; medical assistance, food distribution &amp; nutrition, and financial support for disadvantaged Hindu families, as well as lawful cultural preservation. All contributions are subject to applicable legal requirements, transparent accounting, and organizational policies.
               </p>
             </div>
 
