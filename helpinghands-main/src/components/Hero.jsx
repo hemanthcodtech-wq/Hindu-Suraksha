@@ -82,7 +82,7 @@ export default function Hero() {
 
             <NavLink
               to="/donate"
-              className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/35 bg-white/10 px-5 py-2.5 text-xs font-bold text-white backdrop-blur-md transition hover:bg-white hover:text-[#0d2040] active:scale-95 shadow-md sm:min-h-12 sm:px-6 sm:py-3 sm:text-sm whitespace-nowrap"
+              className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[#3b82f6]/40 bg-[#0c234a]/90 px-5 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-blue-950/40 backdrop-blur-md transition hover:bg-[#143b7d] hover:border-[#60a5fa] active:scale-95 sm:min-h-12 sm:px-6 sm:py-3 sm:text-sm whitespace-nowrap"
             >
               <Heart className="size-3.5 text-[#ff7043] fill-current sm:size-4" />
               <span>Donate to Our Mission</span>
@@ -90,7 +90,7 @@ export default function Hero() {
 
             <NavLink
               to="/programs"
-              className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/20 bg-black/20 px-4 py-2.5 text-xs font-semibold text-white/90 backdrop-blur-md transition hover:bg-white/20 active:scale-95 sm:min-h-12 sm:px-5 sm:py-3 sm:text-sm whitespace-nowrap"
+              className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[#3b82f6]/40 bg-[#0c234a]/90 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-blue-950/40 backdrop-blur-md transition hover:bg-[#143b7d] hover:border-[#60a5fa] active:scale-95 sm:min-h-12 sm:px-5 sm:py-3 sm:text-sm whitespace-nowrap"
             >
               <span>Explore Our Initiatives</span>
             </NavLink>
