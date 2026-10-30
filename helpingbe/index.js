@@ -15,6 +15,8 @@ app.use(cors({
     "http://localhost:3000",
     "http://localhost:5173",
     "https://hindu-suraksha.vercel.app",
+    "https://hindusuraksha.in",
+    "https://www.hindusuraksha.in",
     /\.vercel\.app$/
   ],
   credentials: true
