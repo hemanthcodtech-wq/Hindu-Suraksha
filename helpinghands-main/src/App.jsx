@@ -74,6 +74,7 @@ import CoordinatorDonors from "./pages/coordinator/CoordinatorDonors"
 import CoordinatorCertificates from "./pages/coordinator/CoordinatorCertificates"
 import CoordinatorPlaceholder from "./pages/coordinator/CoordinatorPlaceholder"
 import CoordinatorMedia from "./pages/coordinator/CoordinatorMedia"
+import SEOUpdater from "./components/Common/SEOUpdater"
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -87,6 +88,7 @@ export default function App() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <ScrollToTop />
+      <SEOUpdater />
       <Routes>
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminLayout />}>

@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.helpinghandsfoundation1.org/sitemap.xml
+# Admin and private portals
+Disallow: /admin
+Disallow: /admin/
+Disallow: /admin/login
+Disallow: /member/
+Disallow: /volunteer-portal/
+Disallow: /coordinator-portal/
+
+# Sitemap location
+Sitemap: https://www.hindusuraksha.in/sitemap.xml
