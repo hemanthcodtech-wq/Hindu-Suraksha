@@ -5,8 +5,6 @@ import { Eye, EyeOff, Lock, LogIn } from "lucide-react"
 import { useApp } from "../../context/AppContext"
 import Logo from "../../components/Common/Logo"
 
-const DEMO = { email: "admin@hindusuraksha.org", password: "Admin@1234" }
-
 export default function AdminLogin() {
   const { adminLogin } = useApp()
   const navigate = useNavigate()
@@ -27,8 +25,6 @@ export default function AdminLogin() {
     setLoading(false)
   }
 
-  const fillDemo = () => setForm(DEMO)
-
   return (
     <main className="flex min-h-screen items-center justify-center bg-muted/30 px-4 py-16">
       <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }} className="w-full max-w-sm">
@@ -41,17 +37,6 @@ export default function AdminLogin() {
           </div>
           <h1 className="font-heading text-[22px] font-extrabold text-primary sm:text-2xl">Admin Sign In</h1>
           <p className="text-[9px] text-muted-foreground sm:text-xs">Hindu Suraksha · Admin Panel</p>
-        </div>
-
-        <div className="mb-4 rounded-2xl border border-green-200 bg-green-50 px-4 py-3">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[8px] font-bold uppercase tracking-wider text-green-700 sm:text-[10px]">Demo Credentials</p>
-              <p className="mt-0.5 text-[8px] text-muted-foreground sm:text-xs">{DEMO.email}</p>
-              <p className="text-[8px] text-muted-foreground sm:text-xs">{DEMO.password}</p>
-            </div>
-            <button type="button" onClick={fillDemo} className="rounded-xl bg-green-100 px-3 py-1.5 text-[8px] font-bold text-green-700 transition hover:bg-green-600 hover:text-white sm:text-xs">Fill</button>
-          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-5 shadow-sm sm:rounded-3xl sm:p-7">
